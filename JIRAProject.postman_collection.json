@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "96acf5f7-6689-40c7-abbc-ae2bc499b030",
+		"name": "JIRAProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24513637"
+	},
+	"item": [
+		{
+			"name": "Create issue in JIRA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"issueid\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"NOV\"\r\n        },\r\n        \"summary\": \"create issue in RA project\",\r\n        \"description\": \"Creating of an issue using project keys and issue type names using the REST API\",\r\n        \"issuetype\": {\r\n            \"name\": \"Bug\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vaijayanthimala0789.atlassian.net/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"vaijayanthimala0789",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Issue using Issue ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n    \"project\":\r\n                {\r\n                    \"key\": \"NOV\"\r\n                },\r\n    \"summary\": \"create issue in RA project\",\r\n    \"description\": \"Creating of an issue using project keys and issue type names using the REST API\",\r\n    \"issuetype\": {\r\n                    \"name\": \"Bug\"\r\n                }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vaijayanthimala0789.atlassian.net/rest/api/2/issue/{{issueid}}",
+					"protocol": "https",
+					"host": [
+						"vaijayanthimala0789",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{issueid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit  an Issue in Jira",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"Bug creation Using REST API for testing\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vaijayanthimala0789.atlassian.net/rest/api/2/issue/{{issueid}}",
+					"protocol": "https",
+					"host": [
+						"vaijayanthimala0789",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{issueid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete   an Issue in Jira",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://vaijayanthimala0789.atlassian.net/rest/api/2/issue/{{issueid}}",
+					"protocol": "https",
+					"host": [
+						"vaijayanthimala0789",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{issueid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all issues",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vaijayanthimala0789.atlassian.net/rest/api/2/issuetype",
+					"protocol": "https",
+					"host": [
+						"vaijayanthimala0789",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search all issues",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vaijayanthimala0789.atlassian.net/rest/api/2/search?jql=project=NovBatch",
+					"protocol": "https",
+					"host": [
+						"vaijayanthimala0789",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": "jql",
+							"value": "project=NovBatch"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "uMuqJ2kdLLb8kWpRfNujE4AC",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "vaijayanthimala0789@gmail.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
